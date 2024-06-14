@@ -1,0 +1,23 @@
+<div class="mb-2">
+  How the ratings changed over time
+</div>
+<div>
+  <span class="text-sm">Show above year: </span>
+  <input type="number"
+    min="0"
+    class="font-bold"
+    [(ngModel)]="lowerLimit"
+    placeholder="Minimum 0"
+    (blur)="update()">
+</div>
+<div class="chart-content">
+  <div style="height: 400px;">
+    <canvas baseChart
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [type]="'scatter'">
+    </canvas>
+  </div>
+</div>

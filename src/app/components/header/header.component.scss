@@ -1,0 +1,8 @@
+.nav-link {
+  @apply px-5 py-1 rounded-lg cursor-pointer border border-transparent transition-colors hover:text-primary;
+
+  &.active {
+    @apply border-primary text-primary;
+  }
+}
+

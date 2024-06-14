@@ -1,0 +1,36 @@
+<div class="mt-6">
+  <div class="gap-10 flex flex-row">
+    <span><span class="text-sm">Total Books:</span> {{booksService.books.length}}</span>
+    <span><span class="text-sm">Read:</span> {{booksService.readBooks().length}}</span>
+    <span><span class="text-sm">Currently Reading:</span> {{booksService.currentlyReadingBooks().length}}</span>
+    <span><span class="text-sm">Plan To Read Books:</span> {{booksService.toReadBooks().length}}</span>
+  </div>
+  <div class="mt-6 flex gap-10">
+    @for (chart of charts; track $index) {
+      <div class="chart-container">
+        <div class="chart-header">
+          <h2 class="cursor-pointer">
+            @if ($index === 0) { {{chart1Item()?.text}} }
+            @else if ($index === 1) { {{chart2Item()?.text}} }
+            <fa-icon [icon]="faCaretDown"></fa-icon>
+          </h2>
+          <select class="absolute left-0 w-2/3 opacity-0 cursor-pointer" [(ngModel)]="chart">
+            @for (option of ddItems; track option.value;) {
+              <option [value]="option.value">{{option.text}}</option>
+            }
+          </select>
+        </div>
+        <div class="chart-content">
+          @switch (chart()) {
+            @case ('favTags') { <app-fav-tags-chart /> }
+            @case ('favSubjects') { <app-fav-subjects-chart /> }
+            @case ('favAuthor') { <app-fav-author-chart /> }
+            @case ('ratingVsPageCount') { <app-rating-page-count-chart /> }
+            @case ('ratingVsYear') { <app-rating-year-chart /> }
+            @case ('ratingVsYearPublished') { <app-rating-year-published-chart /> }
+          }
+        </div>
+      </div>
+    }
+  </div>
+</div>

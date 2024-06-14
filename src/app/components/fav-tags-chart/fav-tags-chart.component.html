@@ -1,0 +1,33 @@
+<div class="my-2">
+  Which bookshelves have the highest ratings (works if you tag your books on GR)
+</div>
+<div class="flex flex-row gap-5">
+  <div class="pb-4">
+    <span class="text-sm">Sort by: </span>
+    <select [(ngModel)]="sortBy" (ngModelChange)="update()" class="font-bold">
+      <option value="myRatings">My Ratings</option>
+      <option value="avgRatings">Average Ratings</option>
+      <option value="amountOfBooks">Amount of Books</option>
+    </select>
+  </div>
+  <div class="pl-4">
+    <span class="text-sm">Show above amount: </span>
+    <input type="number"
+      min="0"
+      class="font-bold"
+      [(ngModel)]="lowerLimit"
+      placeholder="Minimum 0"
+      (blur)="update()">
+  </div>
+</div>
+<div class="chart-content">
+  <div style="height: 2000px;">
+    <canvas baseChart
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [type]="'bar'">
+    </canvas>
+  </div>
+</div>

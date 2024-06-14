@@ -1,0 +1,23 @@
+<div class="my-2">
+  How the amount of pages influences the scores
+</div>
+<div>
+  <span class="text-sm">Show below page count: </span>
+  <input type="number"
+    min="0"
+    class="font-bold"
+    [(ngModel)]="upperLimit"
+    placeholder="Minimum 0"
+    (blur)="update()">
+</div>
+<div class="chart-content">
+  <div style="height: 400px;">
+    <canvas baseChart
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [type]="'scatter'">
+    </canvas>
+  </div>
+</div>

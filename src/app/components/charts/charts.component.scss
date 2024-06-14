@@ -1,0 +1,13 @@
+.chart-container {
+  @apply basis-1/2;
+}
+
+.chart-header {
+  @apply flex flex-row justify-between items-center relative;
+  h2 {
+    @apply text-2xl font-bold;
+  }
+  span {
+    @apply flex align-middle;
+  }
+}

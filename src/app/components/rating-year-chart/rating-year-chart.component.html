@@ -1,0 +1,14 @@
+<div class="my-2">
+  How the ratings changed over time
+</div>
+<div class="chart-content">
+  <div style="height: 400px;">
+    <canvas baseChart
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [type]="'line'">
+    </canvas>
+  </div>
+</div>

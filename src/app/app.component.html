@@ -1,0 +1,20 @@
+<div class="container m-auto mt-4">
+  <app-header></app-header>
+  <router-outlet></router-outlet>
+</div>
+
+
+<!-- @if (booksService.books.length > 0) {
+  @for (row of booksService.books.slice(0, 5); track row.bookId) {
+    <img [src]="row | imgUrl" alt="">
+    {{row.title}}
+  }
+
+  <button class="btn" (click)="clear()">clear data</button>
+  <span>data without subject {{ withoutSubject }}</span>
+  <button class="btn" (click)="fetchSubjectsWithIsbn()">fetch categories with isbn</button>
+  <button class="btn" (click)="fetchSubjectsWithGrId()">fetch categories with id</button>
+}
+@else {
+  <input type="file" (change)="onImport($event.target)">
+} -->

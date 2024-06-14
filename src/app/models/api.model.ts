@@ -1,0 +1,58 @@
+export enum DataHeader {
+  BookId = 'Book Id',
+  Title = 'Title',
+  Author = 'Author',
+  AuthorLF = 'Author l-f',
+  AdditionalAuthors = 'Additional Authors',
+  ISBN = 'ISBN',
+  ISBN13 = 'ISBN13',
+  MyRating = 'My Rating',
+  AvgRating = 'Average Rating',
+  Publisher = 'Publisher',
+  Binding = 'Binding',
+  NumberOfPages = 'Number of Pages',
+  YearPublished = 'Year Published',
+  OriginalYearPublished = 'Original Publication Year',
+  DateRead = 'Date Read',
+  DateAdded = 'Date Added',
+  Bookshelves = 'Bookshelves',
+  BookshelvesWithPosition = 'Bookshelves with positions',
+  ExclusiveShelf = 'Exclusive Shelf',
+  MyReview = 'My Review',
+  Spoiler = 'Spoiler',
+  PrivateNotes = 'Private Notes',
+  ReadCount = 'Read Count',
+  OwnedCopies = 'Owned Copies',
+  Subjects = 'Subjects'
+}
+
+export class DataElement {
+
+  constructor(
+    public bookId: string,
+    public title: string,
+    public author: string,
+    public authorLf: string,
+    public additionalAuthors: string,
+    public isbn: string,
+    public isbn13: string,
+    public myRating: string,
+    public avgRating: string,
+    public publisher: string,
+    public binding: string,
+    public numberOfPages: string,
+    public yearPublished: string,
+    public originalYearPublished: string,
+    public dateRead: string,
+    public dateAdded: string,
+    public bookshelves: string,
+    public bookshelvesWithPosition: string,
+    public exclusiveShelf: string,
+    public myReview: string,
+    public spoiler: string,
+    public privateNotes: string,
+    public readCount: string,
+    public ownedCopies: string,
+    public subjects?: string[]
+  ) {}
+}
