@@ -1,0 +1,8 @@
+.nav-link {
+  
+    &.active {
+      @apply bg-white text-darkgray;
+    }
+  }
+  
+  

@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const { tailwindColors } = require('./tailwind-colors');
+
 module.exports = {
   content: [
     "./src/**/*.{html,ts}",
@@ -9,9 +11,9 @@ module.exports = {
         sans: ['Open Sans']
       },
       colors: {
-        primary: '#CC7666',
-        secondary: '#66BCCC',
-        darkgray: '#6D4C46'
+        primary: tailwindColors.primary,
+        secondary: tailwindColors.secondary,
+        darkgray: tailwindColors.darkgray
       }
     },
   },

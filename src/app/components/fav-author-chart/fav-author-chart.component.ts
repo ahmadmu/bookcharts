@@ -4,6 +4,7 @@ import { BooksService } from '../../books.service';
 import { ChartConfiguration, Point } from 'chart.js';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { tailwindColors } from '../../../../tailwind-colors';
 
 @Component({
   selector: 'app-fav-author-chart',
@@ -111,13 +112,13 @@ export class FavAuthorChartComponent {
       {
         data: myRatingData,
         label: 'My Rating',
-        borderColor: '#CC7666',
-        backgroundColor: '#CC7666'},
+        borderColor: tailwindColors.primary,
+        backgroundColor: tailwindColors.primary},
       {
         data: avgRatingData,
         label: 'Avg Rating',
-        borderColor: '#66BCCC',
-        backgroundColor: '#66BCCC'
+        borderColor: tailwindColors.primary,
+        backgroundColor: tailwindColors.secondary
       }
     ]}
   }

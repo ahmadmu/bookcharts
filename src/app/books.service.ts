@@ -1,18 +1,18 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { DataElement } from './models/api.model';
+import { Book } from './models/api.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BooksService {
 
-  private _books = signal<DataElement[]>([]);
+  private _books = signal<Book[]>([]);
 
-  set books(books: DataElement[]) {
+  set books(books: Book[]) {
     this._books.set(books);
   }
 
-  get books(): DataElement[] {
+  get books(): Book[] {
     return this._books();
   }
 

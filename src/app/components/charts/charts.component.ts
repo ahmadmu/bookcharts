@@ -49,4 +49,5 @@ export class ChartsComponent {
     { value: 'ratingVsYear', text: 'Rating over Time'},
     { value: 'ratingVsYearPublished', text: 'Rating vs Year Published'}
   ]
+
 }

@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
 import { BooksService } from '../../books.service';
 import { ChartConfiguration, Point } from 'chart.js';
+import { tailwindColors } from '../../../../tailwind-colors';
 
 @Component({
   selector: 'app-rating-year-chart',
@@ -89,8 +90,8 @@ export class RatingYearChartComponent {
     })
     this.barChartData = {
       datasets: [
-        {data: myRatingData, label: 'My Rating', borderColor: '#CC7666', backgroundColor: '#CC7666'},
-        {data: avgRatingData, label: 'Avg Rating', borderColor: '#66BCCC', backgroundColor: '#66BCCC'}
+        {data: myRatingData, label: 'My Rating', borderColor: tailwindColors.primary, backgroundColor: tailwindColors.primary},
+        {data: avgRatingData, label: 'Avg Rating', borderColor: tailwindColors.secondary, backgroundColor: tailwindColors.secondary}
     ]}
     console.log(this.barChartData)
   }

@@ -28,13 +28,33 @@
 }
 
 .btn {
-  @apply p-1 px-4 rounded bg-primary transition-colors text-white;
+  @apply p-1 w-full text-left px-5 rounded bg-primary transition-colors text-white cursor-pointer;
 
   &:hover {
     @apply bg-darkgray;
   }
+
+  &.btn-outline {
+    @apply bg-white border border-white text-darkgray;
+
+    &:hover {
+      @apply bg-primary text-white;
+    }
+  }
 }
 
-body {
-  @apply text-darkgray;
+html, body {
+  @apply text-darkgray h-full m-0 p-0 font-sans;
+}
+
+h1 {
+  @apply text-3xl font-bold mb-4;
+}
+
+h2 {
+  @apply text-2xl;
+}
+
+h3 {
+  @apply text-xl;
 }

@@ -1,11 +1,5 @@
 <div class="mt-6">
-  <div class="gap-10 flex flex-row">
-    <span><span class="text-sm">Total Books:</span> {{booksService.books.length}}</span>
-    <span><span class="text-sm">Read:</span> {{booksService.readBooks().length}}</span>
-    <span><span class="text-sm">Currently Reading:</span> {{booksService.currentlyReadingBooks().length}}</span>
-    <span><span class="text-sm">Plan To Read Books:</span> {{booksService.toReadBooks().length}}</span>
-  </div>
-  <div class="mt-6 flex gap-10">
+  <div class="mt-6 grid gap-6 w-full grid-cols-1 md:grid-cols-2">
     @for (chart of charts; track $index) {
       <div class="chart-container">
         <div class="chart-header">

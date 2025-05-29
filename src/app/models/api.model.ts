@@ -1,4 +1,4 @@
-export enum DataHeader {
+export enum BookHeader {
   BookId = 'Book Id',
   Title = 'Title',
   Author = 'Author',
@@ -26,7 +26,7 @@ export enum DataHeader {
   Subjects = 'Subjects'
 }
 
-export class DataElement {
+export class Book {
 
   constructor(
     public bookId: string,

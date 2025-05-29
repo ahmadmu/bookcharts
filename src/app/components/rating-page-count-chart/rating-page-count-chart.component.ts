@@ -4,6 +4,7 @@ import { BooksService } from '../../books.service';
 import { ChartConfiguration, Point } from 'chart.js';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { tailwindColors } from '../../../../tailwind-colors';
 
 @Component({
   selector: 'app-rating-page-count-chart',
@@ -79,8 +80,8 @@ export class RatingPageCountChartComponent {
             title: book.title.replace(/['"]+/g, '').substring(0,40)
           })) as any,
           label: 'My Ratings',
-          borderColor: '#CC7666',
-          backgroundColor: '#CC7666'
+          borderColor: tailwindColors.primary,
+          backgroundColor: tailwindColors.primary
         },
         {
           data: readBooks.map(book => ({
@@ -89,8 +90,8 @@ export class RatingPageCountChartComponent {
             title: book.title.replace(/['"]+/g, '').substring(0,40)
           })) as any,
           label: 'Avg Ratings',
-          borderColor: '#66BCCC',
-          backgroundColor: '#66BCCC'
+          borderColor: tailwindColors.secondary,
+          backgroundColor: tailwindColors.secondary
         }
       ]
     }

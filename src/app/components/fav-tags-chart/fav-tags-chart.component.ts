@@ -4,6 +4,7 @@ import { BaseChartDirective } from 'ng2-charts';
 import { BooksService } from '../../books.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
+import { tailwindColors } from '../../../../tailwind-colors';
 
 @Component({
   selector: 'app-fav-tags-chart',
@@ -46,7 +47,7 @@ export class FavTagsChartComponent {
         grid: {
           display: true,
           drawOnChartArea: false,
-          offset: false
+          offset: false,
         }
       }
     }
@@ -99,8 +100,8 @@ export class FavTagsChartComponent {
     if (this.sortBy === 'amountOfBooks') myRatingData.sort((a: any, b: any) => a.count > b.count ? -1 : 1);
     this.barChartData = {
       datasets: [
-        {data: myRatingData, label: 'My Rating', borderColor: '#CC7666', backgroundColor: '#CC7666'},
-        {data: avgRatingData, label: 'Avg Rating', borderColor: '#66BCCC', backgroundColor: '#66BCCC'}
+        {data: myRatingData, label: 'My Rating', borderColor: tailwindColors.primary, backgroundColor: tailwindColors.primary},
+        {data: avgRatingData, label: 'Avg Rating', borderColor: tailwindColors.secondary, backgroundColor: tailwindColors.secondary}
       ]
     }
   }
