@@ -1,39 +1,61 @@
-<div class="bg-primary h-full p-4">
+<div class="bg-primary h-full p-4 w-72 overflow-y-auto">
     <div class="flex flex-col text-white">
         <h1 class="font-light text-4xl">
             BookCharts
           </h1>
           <ul class="navigation flex flex-col items-center gap-1 mt-4">
-            <li class="btn nav-link"
+            <li class="btn nav-link block"
                 routerLink="/charts"
                 routerLinkActive="active">
               <a>Charts</a>
             </li>
-            <li class="btn nav-link"
+            <li class="btn nav-link block"
                 routerLink="/randomizer"
                 routerLinkActive="active">
               <a>Randomizer</a>
             </li>
           </ul>
-          <div class="flex flex-col gap-2 mt-6">
-            <div class="flex flex-col mb-6 px-6 py-4 border-white border-2 rounded w-full">
-                <h2>Satistics:</h2>
-                <span class="text-xl"><span class="text-sm">Total Books:</span> {{booksService.books.length}}</span>
-                <span class="text-xl"><span class="text-sm">Read:</span> {{booksService.readBooks().length}}</span>
-                <span class="text-xl"><span class="text-sm">Currently Reading:</span> {{booksService.currentlyReadingBooks().length}}</span>
-                <span class="text-xl"><span class="text-sm">Plan To Read Books:</span> {{booksService.toReadBooks().length}}</span>    
+          <div class="flex flex-col mt-6">
+            <div class="flex flex-col mb-6 px-6 py-4 border-white border-2 rounded-xl w-full">
+                <div class="flex flex-row justify-between">
+                  <span class="text-xl flex flex-col-reverse">
+                    <span class="text-sm">Total</span>
+                    {{booksService.books().length}}
+                  </span>
+                  <span class="text-xl flex flex-col-reverse">
+                    <span class="text-sm">Read</span>
+                    {{booksService.readBooks().length}}
+                  </span>
+                  <span class="text-xl flex flex-col-reverse" title="Currently Reading">
+                    <span class="text-sm">CR</span>
+                    {{booksService.currentlyReadingBooks().length}}
+                  </span>
+                  <span class="text-xl flex flex-col-reverse" title="Plan To Read">
+                    <span class="text-sm">PTR</span>
+                    {{booksService.toReadBooks().length}}
+                  </span>    
+                </div>
             </div>
-            <div class="flex flex-col gap-2 mb-6">
-                <h2>Manage your data:</h2>
-                <span>data without subject {{ withoutSubject }}</span>
-                <button class="btn btn-outline" (click)="fetchSubjectsWithIsbn()">fetch categories with isbn</button>
-                <button class="btn btn-outline" (click)="fetchSubjectsWithGrId()">fetch categories with id</button>
-                <button class="btn btn-outline" (click)="exportTitleAndIds()">download</button>
+            <div class="flex flex-col gap-1 mb-6">
+                <h3>Fetch Genres</h3>
+                <span>Export title-genre csv and let deepseek seed it</span>
+                <span>prompt: create a new csv based on the attached csv, and fill the genres field with the genres of each book</span>
+                <button class="btn btn-white" (click)="exportTitleAndIds()">download title-genre csv</button>
+                <button class="btn btn-white" (click)="importGenresModal.set(true)">import title-genre csv</button>
             </div>
-            <div>
+            <div class="flex flex-col gap-1 mb-6">
                 <h3>Danger Zone:</h3>
-                <button class="btn btn-outline" (click)="clear()">clear data</button>
-            </div>
-          </div>      
+                <button class="btn btn-white block" (click)="clearModal.set(true)">clear data</button>
+            </div>      
     </div>
 </div>
+
+<app-modal [(open)]="clearModal" title="Clear Data" (confirmed)="clear()">
+  <div>Do you really want to clear all data?</div>
+</app-modal>
+
+<app-modal [(open)]="importGenresModal" title="Import Genres" (confirmed)="clear()" no-footer>
+  <div>
+    <input type="file" (change)="onGenresImport($event.target)">
+  </div>
+</app-modal>

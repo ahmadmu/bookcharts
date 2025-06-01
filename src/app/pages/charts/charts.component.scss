@@ -1,5 +1,5 @@
 .chart-header {
-  @apply flex flex-row justify-between items-center relative;
+  @apply flex flex-row justify-between items-center relative flex-grow;
   h2 {
     @apply text-2xl font-bold;
   }

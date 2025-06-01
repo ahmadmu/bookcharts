@@ -7,17 +7,17 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { tailwindColors } from '../../../../tailwind-colors';
 
 @Component({
-  selector: 'app-fav-subjects-chart',
+  selector: 'app-fav-genres-chart',
   standalone: true,
   imports: [
     BaseChartDirective,
     FontAwesomeModule,
     FormsModule
   ],
-  templateUrl: './fav-subjects-chart.component.html',
-  styleUrl: './fav-subjects-chart.component.scss'
+  templateUrl: './fav-genres-chart.component.html',
+  styleUrl: './fav-genres-chart.component.scss'
 })
-export class FavSubjectsChartComponent {
+export class FavGenresChartComponent {
 
   booksService = inject(BooksService);
 
@@ -72,12 +72,12 @@ export class FavSubjectsChartComponent {
 
   initData() {
     const readBooks = this.booksService.readBooks().filter(book => +book.myRating > 0);
-    const subjectsMap = new Map<string, {myRatings: number[], avgRatings: number[]}>();
+    const genresMap = new Map<string, {myRatings: number[], avgRatings: number[]}>();
     readBooks.forEach(book => {
-      const bookshelves = book.subjects;
-      bookshelves?.map(subject => subject.split(',')).flat().forEach((subject: string) => {
-        const oldValues = subjectsMap.get(subject.trim()) ?? {myRatings: [], avgRatings: []}
-        subjectsMap.set(subject.trim(), {
+      const bookshelves = book.genres;
+      bookshelves?.map(genre => genre.split(',')).flat().forEach((genre: string) => {
+        const oldValues = genresMap.get(genre.trim()) ?? {myRatings: [], avgRatings: []}
+        genresMap.set(genre.trim(), {
           myRatings: [...oldValues.myRatings, +book.myRating],
           avgRatings: [...oldValues.avgRatings, +book.avgRating]
         })
@@ -85,7 +85,7 @@ export class FavSubjectsChartComponent {
     })
     const myRatingData: any = [];
     const avgRatingData: any = [];
-    Array.from(subjectsMap.entries())
+    Array.from(genresMap.entries())
       .filter(entry => entry[1].myRatings.length > this.lowerLimit)
       .forEach(entry => {
         const shelf = entry[0];

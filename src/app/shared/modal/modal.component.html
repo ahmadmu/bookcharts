@@ -1,0 +1,19 @@
+@if (isOpen) {
+    <div class="modal" (click)="cancel($event)">
+        <div class="modal-container animate-appear">
+            <div class="modal-header">
+                <h3>{{ title }}</h3>
+                <span class="close" (click)="close()">&times;</span>
+            </div>
+            <div class="modal-content">
+                <ng-content></ng-content>
+            </div>
+            @if(!noFooter) {
+                <div class="modal-footer">
+                    <button class="btn btn-transparent" (click)="cancel()">{{ cancelText }}</button>
+                    <button class="btn btn-primary" (click)="confirm()">{{ confirmText }}</button>
+                </div>
+            }
+        </div>
+    </div>
+}

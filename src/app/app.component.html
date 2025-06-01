@@ -2,11 +2,14 @@
   <app-sidebar>
   </app-sidebar>
   
-  <div class="container m-auto mt-4">
-    @if (booksService.books.length > 0) {
-      <div class="flex flex-row">
-        <div>
-          <router-outlet></router-outlet>
+  <div class="container m-auto py-4 h-full w-full">
+    <div class="flex flex-row m-auto px-5 w-full h-full">
+      <div class="w-full h-full">
+          @if (booksService.books().length > 0) {
+            <router-outlet></router-outlet>
+          } @else {
+            <app-import class="h-full"></app-import>
+          }
         </div>
       </div>
   
@@ -14,10 +17,5 @@
         <img [src]="row | imgUrl" alt="">
         {{row.title}}
       } -->
-  
-    }
-    @else {
-      <input type="file" (change)="onImport($event.target)">
-    }
   </div>
 </div>

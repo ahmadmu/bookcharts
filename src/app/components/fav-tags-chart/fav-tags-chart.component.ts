@@ -1,7 +1,7 @@
 import { Component, ViewChild, inject } from '@angular/core';
 import { ChartConfiguration } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-import { BooksService } from '../../books.service';
+import { BooksService } from '../../services/books.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { tailwindColors } from '../../../../tailwind-colors';

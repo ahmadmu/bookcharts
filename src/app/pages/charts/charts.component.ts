@@ -1,16 +1,17 @@
 import { Component, Signal, computed, inject, signal } from '@angular/core';
-import { BooksService } from '../../books.service';
+import { BooksService } from '../../services/books.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { FormsModule } from '@angular/forms';
-import { FavTagsChartComponent } from '../fav-tags-chart/fav-tags-chart.component';
-import { FavAuthorChartComponent } from '../fav-author-chart/fav-author-chart.component';
-import { FavSubjectsChartComponent } from '../fav-subjects-chart/fav-subjects-chart.component';
-import { RatingYearChartComponent } from '../rating-year-chart/rating-year-chart.component';
-import { RatingYearPublishedChartComponent } from '../rating-year-published-chart/rating-year-published-chart.component';
-import { RatingPageCountChartComponent } from '../rating-page-count-chart/rating-page-count-chart.component';
+import { FavTagsChartComponent } from '../../components/fav-tags-chart/fav-tags-chart.component';
+import { FavAuthorChartComponent } from '../../components/fav-author-chart/fav-author-chart.component';
+import { FavSubjectsChartComponent } from '../../components/fav-subjects-chart/fav-subjects-chart.component';
+import { RatingYearChartComponent } from '../../components/rating-year-chart/rating-year-chart.component';
+import { RatingYearPublishedChartComponent } from '../../components/rating-year-published-chart/rating-year-published-chart.component';
+import { RatingPageCountChartComponent } from '../../components/rating-page-count-chart/rating-page-count-chart.component';
+import { FavGenresChartComponent } from '../../components/fav-genres-chart/fav-genres-chart.component';
 
-export type ChartType = 'favTags' | 'favSubjects' | 'favAuthor' | 'ratingVsPageCount' | 'ratingVsYear' | 'ratingVsYearPublished';
+export type ChartType = 'favTags' | 'favSubjects' | 'favGenres' | 'favAuthor' | 'ratingVsPageCount' | 'ratingVsYear' | 'ratingVsYearPublished';
 
 @Component({
   selector: 'app-charts',
@@ -21,6 +22,7 @@ export type ChartType = 'favTags' | 'favSubjects' | 'favAuthor' | 'ratingVsPageC
     FavTagsChartComponent,
     FavAuthorChartComponent,
     FavSubjectsChartComponent,
+    FavGenresChartComponent,
     RatingYearChartComponent,
     RatingYearPublishedChartComponent,
     RatingPageCountChartComponent
@@ -44,6 +46,7 @@ export class ChartsComponent {
   ddItems: {value: ChartType, text: string }[] = [
     { value: 'favTags', text: 'Favorite Tags'},
     { value: 'favSubjects', text: 'Favorite Subjects' },
+    { value: 'favGenres', text: 'Favorite Genres' },
     { value: 'favAuthor', text: 'Favorite Author'},
     { value: 'ratingVsPageCount', text: 'Rating vs Page Count'},
     { value: 'ratingVsYear', text: 'Rating over Time'},

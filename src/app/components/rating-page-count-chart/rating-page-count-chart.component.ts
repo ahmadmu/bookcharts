@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
-import { BooksService } from '../../books.service';
+import { BooksService } from '../../services/books.service';
 import { ChartConfiguration, Point } from 'chart.js';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';

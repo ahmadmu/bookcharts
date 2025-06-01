@@ -1,0 +1,21 @@
+.modal {
+    @apply h-full w-full fixed top-0 left-0 z-50 flex items-center justify-center bg-black bg-opacity-50 transition;
+    .modal-container {
+        @apply bg-white rounded-lg shadow-lg w-11/12 max-w-2xl relative;
+        .modal-header {
+            @apply flex items-center justify-between bg-primary px-6 py-3 rounded-t-lg text-white;
+            .close {
+                @apply hover:text-gray-700 cursor-pointer text-2xl;
+                &:hover {
+                    @apply text-gray-700;
+                }
+            }
+        }
+        .modal-content {
+            @apply px-6 py-3 text-darkgray;
+        }
+        .modal-footer {
+            @apply gap-2 flex justify-end py-3 px-6 rounded-b-lg;
+        }
+    }
+}

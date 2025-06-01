@@ -28,18 +28,34 @@
 }
 
 .btn {
-  @apply p-1 w-full text-left px-5 rounded bg-primary transition-colors text-white cursor-pointer;
+  @apply py-1.5 text-left px-5 rounded-lg bg-primary transition-colors text-white cursor-pointer;
+
+  &.block {
+    @apply w-full;
+  }
 
   &:hover {
     @apply bg-darkgray;
   }
 
-  &.btn-outline {
-    @apply bg-white border border-white text-darkgray;
+  &.btn-white {
+    @apply bg-white text-primary border border-primary;
 
     &:hover {
       @apply bg-primary text-white;
     }
+  }
+  
+  &.btn-outline {
+    @apply bg-transparent border border-primary text-primary;
+
+    &:hover {
+      @apply bg-primary text-white border border-primary;
+    }
+  }
+
+  &.btn-transparent {
+    @apply bg-transparent text-primary;
   }
 }
 
@@ -52,9 +68,9 @@ h1 {
 }
 
 h2 {
-  @apply text-2xl;
+  @apply text-2xl mb-2;
 }
 
 h3 {
-  @apply text-xl;
+  @apply text-xl mb-1;
 }

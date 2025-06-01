@@ -1,0 +1,29 @@
+<div class="w-full h-full border-dashed border-4 border-primary rounded-xl px-6 relative" 
+    (dragover)="draggedOver = true"
+    (dragleave)="draggedOver = false"
+    [class.draggedOver]="draggedOver">
+    <div class="p-6 flex flex-col items-center justify-center text-xl h-full">
+        @if(importing) {
+            <ng-lottie [options]="options" width="300px" height="300px"></ng-lottie>
+            <div class="mb-10">
+                <div *ngIf="importPhase === 'initial'">Importing your books...</div>
+                <div *ngIf="importPhase === 'isbns'">Fetching subjects from OpenLibrary by ISBN...</div>
+                <div *ngIf="importPhase === 'ids'">Fetching subjects from OpenLibrary by ID...</div>
+                <div *ngIf="importPhase === 'completed'">Import successful and saved in your browser! Redirecting...</div>
+            </div>
+        } @else {
+            @if(!draggedOver) {
+                <div>
+                    Press here or pull a file into this area to import your books.
+                </div>
+                <div>
+                    or <a class="text-primary underline z-10 relative cursor-pointer hover:text-darkgray" (click)="onImport()">use sample csv</a>
+                </div>
+            } @else if(draggedOver) {
+                Drop your file here to import your books.
+            }
+            <input type="file" (change)="onImport($event.target)" class="w-full h-full absolute top-0 left-0 opacity-0 cursor-pointer">
+        }
+    </div>
+    
+</div>

@@ -23,7 +23,8 @@ export enum BookHeader {
   PrivateNotes = 'Private Notes',
   ReadCount = 'Read Count',
   OwnedCopies = 'Owned Copies',
-  Subjects = 'Subjects'
+  Subjects = 'Subjects',
+  Genres = 'Genres'
 }
 
 export class Book {
@@ -53,6 +54,7 @@ export class Book {
     public privateNotes: string,
     public readCount: string,
     public ownedCopies: string,
-    public subjects?: string[]
+    public subjects?: string[],
+    public genres?: string[]
   ) {}
 }
