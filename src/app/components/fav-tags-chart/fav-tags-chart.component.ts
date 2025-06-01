@@ -17,7 +17,14 @@ import { GenericRatingBarChart } from "../../shared/generic-rating-bar-chart/gen
 })
 export class FavTagsChartComponent {
 
-  booksService = inject(BooksService);
   sortBy: 'myRatings' | 'avgRatings' | 'amountOfBooks' = 'myRatings'
   lowerLimit = 0;
+
+  booksService = inject(BooksService);
+  filterByYear: 'all' | string = 'all'
+  
+  filterOptions = [
+    'all',
+    ...this.booksService.getYears()
+  ]
 }

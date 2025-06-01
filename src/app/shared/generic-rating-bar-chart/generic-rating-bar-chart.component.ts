@@ -19,8 +19,9 @@ export class GenericRatingBarChart {
 
   @Input() attribute: keyof Book  = 'genres';
   @Input() lowerLimit = 1;
-  @Input() tooltipCallback = (items: any) => `${(items[0].raw as Point).x} \n${(items[0].raw as any).count} books: \n${(items[0].raw as any).books.join('\n')}`
+  @Input() tooltipCallback = (items: any) => `Rating: ${(items[0].raw as Point).x} \n${(items[0].raw as any).count} book(s): \n${(items[0].raw as any).books.join('\n')}`
   @Input() sortBy: 'myRatings' | 'avgRatings' | 'amountOfBooks' = 'myRatings';
+  @Input() filterByYear: 'all' | string = 'all';
 
   booksService = inject(BooksService);
 
@@ -70,7 +71,6 @@ export class GenericRatingBarChart {
             return substringed + count; 
           },
         }
-        
       }
     }
   };
@@ -86,7 +86,14 @@ export class GenericRatingBarChart {
   }
 
   initData() {
-    const readBooks = this.booksService.readBooks().filter(book => +book.myRating > 0);
+    let readBooks = this.booksService.readBooks().filter(book => +book.myRating > 0);
+    if (this.filterByYear !== 'all') {
+      readBooks = readBooks.filter(book => 
+        book.dateRead &&
+        book.dateRead !== undefined && 
+        book.dateRead.split('/')[0].trim() === this.filterByYear
+      )
+    }
     const itemsMap = new Map<string, {myRatings: number[], avgRatings: number[], books: string[]}>();
     readBooks.forEach(book => {
       let items = []

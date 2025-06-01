@@ -64,12 +64,12 @@ export class ImportComponent {
         tap(() => this.importPhase = 'isbns'),
         switchMap(
           books => this.fetchSubjectsWithIsbn(books).pipe(
-            delay(200),
+            delay(5000),
             tap(() => this.importPhase = 'ids'),
             switchMap(() => this.fetchSubjectsWithGrId(books)),
-            delay(2000),
+            delay(5000),
             tap(() => this.importPhase = 'completed'),
-            delay(2000),
+            delay(3000),
             finalize(() => {
               this.importing = false;
               this.booksService.books.set(books);

@@ -16,7 +16,7 @@ export class BooksService {
 
   booksWithSubjects =  computed(() => this.readBooks().filter(item => item.subjects));
   booksWithoutSubject = computed(() => this.readBooks().filter(item => !item.subjects));
-  
+
   constructor(private http: HttpClient) { }
 
   saveInLocalStorage() {
@@ -26,5 +26,11 @@ export class BooksService {
 
   getDemoCsv(): Observable<File> {
     return this.http.get<File>('assets/books.csv', {responseType: 'blob' as 'json'});
+  }
+
+  getYears() {
+    return Array.from(new Set(
+      this.books().map(book => book.dateRead.split('/')[0].trim()).filter(year => year !== '0' && year !== '')
+    )).sort((a, b) => +a - +b); 
   }
 }

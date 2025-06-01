@@ -4,11 +4,18 @@ import { BooksService } from '../services/books.service';
 import { catchError, finalize, merge, of, tap } from 'rxjs';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ModalComponent } from "../shared/modal/modal.component";
-import { Book, BookHeader } from '../models/api.model';
+import { Book } from '../models/api.model';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faBook, faChartBar, faChartSimple, faCheck, faCopy, faDownload, faFileImport, faList, faShuffle, faTable, faTableList, faTrash, faUpload } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [RouterLink, RouterLinkActive, ModalComponent],
+  imports: [
+    RouterLink, 
+    RouterLinkActive, 
+    ModalComponent,
+    FontAwesomeModule,
+  ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })
@@ -21,6 +28,18 @@ export class SidebarComponent {
   importGenresModal = signal(false)
 
   csvMetadata = {name: '', size: 0, type: ''}
+
+  faBook = faBook;
+  faChartSimple = faChartSimple;
+  faList = faList;
+  faShuffle = faShuffle;
+  faDownload = faDownload;
+  faFileImport = faFileImport;
+  faTrash = faTrash;
+  faCopy = faCopy;
+  faCheck = faCheck;
+
+  copyStatus: 'done' | string = 'Copy prompt to clipboard';
 
   ngOnInit() {
     const storageData = localStorage.getItem('data');
@@ -86,5 +105,18 @@ export class SidebarComponent {
     this.booksService.books.set(books);
     this.booksService.saveInLocalStorage();
     this.importGenresModal.set(false);
+  }
+
+  copyPromptToClipboard() {
+    const prompt = 'create a new semicolon separated csv based on the attached csv, and fill the genres field with the genres of each book';
+    navigator.clipboard.writeText(prompt).then(() => {
+      this.copyStatus = 'Copied!';
+    }).catch(err => {
+      this.copyStatus = 'Failed to copy prompt. Please try again.';
+      console.error('Failed to copy prompt: ', err);
+    });
+    setTimeout(() => {
+      this.copyStatus = 'Copy prompt to clipboard';
+    }, 5000);
   }
 }
