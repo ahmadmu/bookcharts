@@ -7,19 +7,19 @@ import { tailwindColors } from '../../../../tailwind-colors';
 import { Book } from '../../models/api.model';
 
 @Component({
-  selector: 'app-vertical-bar-chart',
+  selector: 'app-generic-rating-bar-chart',
   imports: [    
     BaseChartDirective,
     NgStyle
   ],
-  templateUrl: './vertical-bar-chart.component.html',
-  styleUrl: './vertical-bar-chart.component.scss'
+  templateUrl: './generic-rating-bar-chart.component.html',
+  styleUrl: './generic-rating-bar-chart.component.scss'
 })
-export class VerticalBarChartComponent {
+export class GenericRatingBarChart {
 
   @Input() attribute: keyof Book  = 'genres';
   @Input() lowerLimit = 1;
-  @Input() tooltipCallback = (items: any) => `${(items[0].raw as Point).x} \n${(items[0].raw as any).count} books`;
+  @Input() tooltipCallback = (items: any) => `${(items[0].raw as Point).x} \n${(items[0].raw as any).count} books: \n${(items[0].raw as any).books.join('\n')}`
   @Input() sortBy: 'myRatings' | 'avgRatings' | 'amountOfBooks' = 'myRatings';
 
   booksService = inject(BooksService);
@@ -87,7 +87,7 @@ export class VerticalBarChartComponent {
 
   initData() {
     const readBooks = this.booksService.readBooks().filter(book => +book.myRating > 0);
-    const itemsMap = new Map<string, {myRatings: number[], avgRatings: number[]}>();
+    const itemsMap = new Map<string, {myRatings: number[], avgRatings: number[], books: string[]}>();
     readBooks.forEach(book => {
       let items = []
       if (typeof book[this.attribute] === 'string') {
@@ -97,10 +97,11 @@ export class VerticalBarChartComponent {
         items = bookshelves?.map(item => item.split(',')).flat() ?? [];
       }
       items.forEach((item: string) => {
-        const oldValues = itemsMap.get(item.trim()) ?? {myRatings: [], avgRatings: []}
+        const oldValues = itemsMap.get(item.trim()) ?? {myRatings: [], avgRatings: [], books: []}
         itemsMap.set(item.trim(), {
           myRatings: [...oldValues.myRatings, +book.myRating],
-          avgRatings: [...oldValues.avgRatings, +book.avgRating]
+          avgRatings: [...oldValues.avgRatings, +book.avgRating],
+          books: [...oldValues.books, book.title.replace(/['"]+/g, '')]
         })
       })
     })
@@ -116,12 +117,14 @@ export class VerticalBarChartComponent {
           y: shelf + ' (' + myRatings.length + ')',
           x: myRatings.reduce(this.reduceCallback, 0) / myRatings.length,
           avgRatings: avgRatings.reduce(this.reduceCallback, 0) / avgRatings.length,
-          count: myRatings.length
+          count: myRatings.length,
+          books: entry[1].books
         })
         avgRatingData.push({
           y: shelf + ' (' + myRatings.length + ')',
           x: avgRatings.reduce(this.reduceCallback, 0) / avgRatings.length,
-          count: avgRatings.length
+          count: avgRatings.length,
+          books: entry[1].books
         })
       }
     )

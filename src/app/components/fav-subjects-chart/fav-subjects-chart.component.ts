@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { BooksService } from '../../services/books.service';
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { VerticalBarChartComponent } from "../../shared/vertical-bar-chart/vertical-bar-chart.component";
+import { GenericRatingBarChart } from "../../shared/generic-rating-bar-chart/generic-rating-bar-chart.component";
 
 @Component({
   selector: 'app-fav-subjects-chart',
@@ -10,7 +10,7 @@ import { VerticalBarChartComponent } from "../../shared/vertical-bar-chart/verti
   imports: [
     FontAwesomeModule,
     FormsModule,
-    VerticalBarChartComponent
+    GenericRatingBarChart
 ],
   templateUrl: './fav-subjects-chart.component.html',
   styleUrl: './fav-subjects-chart.component.scss'

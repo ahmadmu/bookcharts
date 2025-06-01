@@ -1,11 +1,8 @@
 import { Component, ViewChild, inject } from '@angular/core';
-import { ChartConfiguration } from 'chart.js';
-import { BaseChartDirective } from 'ng2-charts';
 import { BooksService } from '../../services/books.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
-import { tailwindColors } from '../../../../tailwind-colors';
-import { VerticalBarChartComponent } from "../../shared/vertical-bar-chart/vertical-bar-chart.component";
+import { GenericRatingBarChart } from "../../shared/generic-rating-bar-chart/generic-rating-bar-chart.component";
 
 @Component({
   selector: 'app-fav-tags-chart',
@@ -13,7 +10,7 @@ import { VerticalBarChartComponent } from "../../shared/vertical-bar-chart/verti
   imports: [
     FontAwesomeModule,
     FormsModule,
-    VerticalBarChartComponent
+    GenericRatingBarChart
 ],
   templateUrl: './fav-tags-chart.component.html',
   styleUrl: './fav-tags-chart.component.scss'

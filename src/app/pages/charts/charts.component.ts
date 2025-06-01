@@ -10,8 +10,9 @@ import { RatingYearChartComponent } from '../../components/rating-year-chart/rat
 import { RatingYearPublishedChartComponent } from '../../components/rating-year-published-chart/rating-year-published-chart.component';
 import { RatingPageCountChartComponent } from '../../components/rating-page-count-chart/rating-page-count-chart.component';
 import { FavGenresChartComponent } from '../../components/fav-genres-chart/fav-genres-chart.component';
+import { FavGenresPerYearComponent } from "../../components/fav-genres-per-year/fav-genres-per-year.component";
 
-export type ChartType = 'favTags' | 'favSubjects' | 'favGenres' | 'favAuthor' | 'ratingVsPageCount' | 'ratingVsYear' | 'ratingVsYearPublished';
+export type ChartType = 'favTags' | 'favSubjects' | 'favGenres' | 'favAuthor' | 'ratingVsPageCount' | 'ratingVsYear' | 'ratingVsYearPublished' | 'favGenresPerYear';
 
 @Component({
   selector: 'app-charts',
@@ -25,8 +26,9 @@ export type ChartType = 'favTags' | 'favSubjects' | 'favGenres' | 'favAuthor' | 
     FavGenresChartComponent,
     RatingYearChartComponent,
     RatingYearPublishedChartComponent,
-    RatingPageCountChartComponent
-  ],
+    RatingPageCountChartComponent,
+    FavGenresPerYearComponent
+],
   templateUrl: './charts.component.html',
   styleUrl: './charts.component.scss'
 })
@@ -50,7 +52,8 @@ export class ChartsComponent {
     { value: 'favAuthor', text: 'Favorite Author'},
     { value: 'ratingVsPageCount', text: 'Rating vs Page Count'},
     { value: 'ratingVsYear', text: 'Rating over Time'},
-    { value: 'ratingVsYearPublished', text: 'Rating vs Year Published'}
+    { value: 'ratingVsYearPublished', text: 'Rating vs Year Published'},
+    { value: 'favGenresPerYear', text: 'Favorite Genres per Year' }
   ]
 
   ngOnInit() {
