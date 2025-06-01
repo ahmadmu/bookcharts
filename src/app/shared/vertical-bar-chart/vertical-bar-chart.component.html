@@ -1,0 +1,11 @@
+<div [ngStyle]="{
+    height: barChartData.datasets[0].data.length * 50 + 'px',
+}">
+    <canvas baseChart
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [type]="'bar'">
+    </canvas>
+</div>

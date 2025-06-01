@@ -5,7 +5,6 @@
   <div class="pb-4">
     <span class="text-sm">Sort by: </span>
     <select [(ngModel)]="sortBy"
-      (ngModelChange)="update()"
       class="font-bold">
       <option value="myRatings">My Ratings</option>
       <option value="avgRatings">Average Ratings</option>
@@ -18,18 +17,14 @@
       min="1"
       class="font-bold"
       [(ngModel)]="lowerLimit"
-      placeholder="Minimum 1"
-      (blur)="update()">
+      placeholder="Minimum 1">
   </div>
 </div>
 <div class="chart-content">
-  <div style="height: 5000px;">
-    <canvas baseChart
-            [data]="barChartData"
-            [options]="barChartOptions"
-            [plugins]="barChartPlugins"
-            [legend]="barChartLegend"
-            [type]="'bar'">
-    </canvas>
-  </div>
+  <app-vertical-bar-chart 
+    attribute="subjects" 
+    [lowerLimit]="lowerLimit"
+    [sortBy]="sortBy"
+  >
+  </app-vertical-bar-chart>
 </div>

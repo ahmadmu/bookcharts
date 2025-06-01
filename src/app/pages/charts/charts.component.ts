@@ -53,4 +53,21 @@ export class ChartsComponent {
     { value: 'ratingVsYearPublished', text: 'Rating vs Year Published'}
   ]
 
+  ngOnInit() {
+    const storedCharts = localStorage.getItem('charts');
+    if (storedCharts) {
+      const parsedCharts: ChartType[] = JSON.parse(storedCharts);
+      this.charts = parsedCharts.map(c => signal(c));
+    } else {
+      this.charts = [signal('favTags'), signal('favSubjects')];
+    }
+  }
+
+  onChartChange() {
+    this.saveInLocalStorage();
+  }
+
+  saveInLocalStorage() {
+    localStorage.setItem('charts', JSON.stringify(this.charts.map(c => c())));
+  }
 }

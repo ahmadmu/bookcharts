@@ -1,4 +1,10 @@
-<div class="mt-6">
+<div>
+  <h1 class="text-4xl font-light">Charts</h1>
+  <div>
+    <p>
+      Here you can find various charts based on your book data. You can select different charts from the dropdowns.
+    </p>
+  </div>
   <div class="mt-6 grid gap-6 w-full grid-cols-1 md:grid-cols-2">
     @for (chart of charts; track $index) {
       <div class="chart-container">
@@ -8,7 +14,7 @@
             @else if ($index === 1) { {{chart2Item()?.text}} }
             <fa-icon [icon]="faCaretDown"></fa-icon>
           </h2>
-          <select class="absolute left-0 w-2/3 opacity-0 cursor-pointer" [(ngModel)]="chart">
+          <select class="absolute left-0 w-2/3 opacity-0 cursor-pointer" [(ngModel)]="chart" (ngModelChange)="onChartChange()">
             @for (option of ddItems; track option.value;) {
               <option [value]="option.value">{{option.text}}</option>
             }
