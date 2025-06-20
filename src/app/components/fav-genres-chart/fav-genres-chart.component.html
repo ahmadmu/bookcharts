@@ -1,5 +1,6 @@
 <div class="my-2">
-  Which genres have the highest ratings. Check sidebar to import genres.
+  Which genres have the highest ratings. 
+  <a class="link-primary" (click)="importGenresModal.set(true)">Import Genres</a>
 </div>
 <div class="flex flex-row gap-5">
   <div class="pb-4">
@@ -38,3 +39,37 @@
   >
   </app-generic-rating-bar-chart>
 </div>
+
+<app-modal [(open)]="importGenresModal" title="Fetch Genres" no-footer>
+  <div class="flex flex-col gap-1">
+    <p class="mb-0">Currently the genres need to be added manually or through AI.</p>
+    <p class="mb-1">To do that you can export a csv with 2 columns, "Title" and "Genres", and let Deepseek fill in the "Genres" column</p>
+    <a class="link-primary" (click)="exportTitleAndIds($event)">
+      <fa-icon [icon]="faDownload"></fa-icon>
+      Download Title-Genres csv
+    </a>
+    <a class="link-primary" (click)="copyPromptToClipboard($event)">
+      @if (copyStatus === 'Copied!') {
+        <fa-icon [icon]="faCheck"></fa-icon>
+      } @else {
+        <fa-icon [icon]="faCopy"></fa-icon>
+      }
+      {{ copyStatus }}
+    </a>
+    <a href="https://chat.deepseek.com/" target="_blank" class="link-primary" (click)="$event.stopPropagation()">
+      <fa-icon [icon]="faDownload"></fa-icon>
+      Go to deepseek, paste the prompt and upload the csv
+    </a>
+    <div class="mt-4">
+      <h3>Import Genres:</h3>
+      <p>Upload the Title-Genres csv file that deepseek gave you here</p>
+      <div class="w-full h-3/4 border-dashed border-4 border-primary rounded-xl p-6 relative mt-4"
+        (click)="$event.stopPropagation()">
+        <div class="p-2 flex flex-col items-center justify-center h-full">
+          Press here or pull the CSV file from deepseek to import your genres
+        </div>
+        <input type="file" (change)="onGenresImport($event.target)" class="w-full h-full absolute top-0 left-0 opacity-0 cursor-pointer">
+      </div>
+    </div>
+  </div>
+</app-modal>

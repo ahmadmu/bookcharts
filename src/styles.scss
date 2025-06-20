@@ -78,3 +78,7 @@ h3 {
 p {
   @apply text-base mb-4;
 }
+
+.link-primary {
+  @apply underline text-primary hover:text-darkgray cursor-pointer
+}

@@ -1,99 +1,75 @@
-<div class="bg-primary h-full p-4 w-72 overflow-y-auto">
+@if (hasData()) {
+  <div class="bg-primary h-full p-4 w-72 overflow-y-auto">
     <div class="flex flex-col text-white">
-        <h1 class="font-light text-4xl">
-            <fa-icon [icon]="faBook"></fa-icon>
-            BookCharts
-          </h1>
-          <ul class="navigation flex flex-col items-center gap-1 mt-4">
-            <li class="btn nav-link block"
-                routerLink="/charts"
-                routerLinkActive="active">
-              <fa-icon [icon]="faChartSimple" class="mr-2"></fa-icon>
-              <a>Charts</a>
-            </li>
-            <li class="btn nav-link block"
-                routerLink="/books"
-                routerLinkActive="active">
-              <fa-icon [icon]="faList" class="mr-2"></fa-icon>
-              <a>Books</a>
-            </li>
-            <li class="btn nav-link block"
-                routerLink="/randomizer"
-                routerLinkActive="active">
-              <fa-icon [icon]="faShuffle" class="mr-2"></fa-icon>
-              <a>Randomizer</a>
-            </li>
-          </ul>
-          <div class="flex flex-col mt-6">
-            <div class="flex flex-col mb-6 px-6 py-4 border-white border-2 rounded-xl w-full">
-              <div class="flex flex-row justify-between">
-                <span class="text-xl flex flex-col-reverse">
-                  <span class="text-sm">Total</span>
-                  {{booksService.books().length}}
-                </span>
-                <span class="text-xl flex flex-col-reverse">
-                  <span class="text-sm">Read</span>
-                  {{booksService.readBooks().length}}
-                </span>
-                <span class="text-xl flex flex-col-reverse" title="Currently Reading">
-                  <span class="text-sm">CR</span>
-                  {{booksService.currentlyReadingBooks().length}}
-                </span>
-                <span class="text-xl flex flex-col-reverse" title="Plan To Read">
-                  <span class="text-sm">PTR</span>
-                  {{booksService.toReadBooks().length}}
-                </span>    
-              </div>
-            </div>
-            <div class="flex flex-col gap-1 mb-6">
-              <h3>Fetch Genres</h3>
-              <span>Export title-genre csv and let deepseek or chatGPT seed it</span>
-              <a class="underline cursor-pointer mb-2" (click)="copyPromptToClipboard()">
-                @if (copyStatus === 'Copied!') {
-                  <fa-icon [icon]="faCheck"></fa-icon>
-                } @else {
-                  <fa-icon [icon]="faCopy"></fa-icon>
-                }
-                {{ copyStatus }}
-              </a>
-              <button class="btn btn-white" (click)="exportTitleAndIds()">
-                <fa-icon [icon]="faDownload" class="mr-2"></fa-icon>
-                download title-genre csv
-              </button>
-              <button class="btn btn-white" (click)="importGenresModal.set(true)">
-                <fa-icon [icon]="faFileImport" class="mr-2"></fa-icon>
-                import title-genre csv
-              </button>
-            </div>
-            <div class="flex flex-col gap-1 mb-6">
-                <h3>Danger Zone:</h3>
-                <button class="btn btn-white block" (click)="clearModal.set(true)">
-                  <fa-icon [icon]="faTrash" class="mr-2"></fa-icon>
-                  clear data
-                </button>
-            </div>  
-            <div class="flex flex-col gap-1">
-              <div>
-                <p>The data you upload here is saved in your browser only.</p>
-              </div>
-            </div>
-            <div class="flex flex-col gap-1 mb-6">
-              <h2>Helpful links:</h2>
-              <div class="flex flex-col">
-                <a class="underline" target="_blank" href="https://www.goodreads.com/review/import">Export your Goodreads list</a>
-                <a class="underline" target="_blank" href="https://chatgpt.com/">ChatGPT</a>
-                <a class="underline" target="_blank" href="https://chat.deepseek.com/">Deepseek</a>         
-              </div>
-            </div>
+      <h1 class="font-light text-4xl">
+        <fa-icon [icon]="faBook"></fa-icon>
+        BookCharts
+      </h1>
+      <ul class="navigation flex flex-col items-center gap-1 mt-4">
+        <li class="btn nav-link block"
+            routerLink="/charts"
+            routerLinkActive="active">
+          <fa-icon [icon]="faChartSimple" class="mr-2"></fa-icon>
+          <a>Charts</a>
+        </li>
+        <li class="btn nav-link block"
+            routerLink="/books"
+            routerLinkActive="active">
+          <fa-icon [icon]="faList" class="mr-2"></fa-icon>
+          <a>Books</a>
+        </li>
+        <li class="btn nav-link block"
+            routerLink="/randomizer"
+            routerLinkActive="active">
+          <fa-icon [icon]="faShuffle" class="mr-2"></fa-icon>
+          <a>Randomizer</a>
+        </li>
+      </ul>
+      <div class="flex flex-col mt-6">
+        <div class="flex flex-col mb-6 px-6 py-4 border-white border-2 rounded-xl w-full">
+          <div class="flex flex-row justify-between">
+            <span class="text-xl flex flex-col-reverse">
+              <span class="text-sm">Total</span>
+              {{booksService.books().length}}
+            </span>
+            <span class="text-xl flex flex-col-reverse">
+              <span class="text-sm">Read</span>
+              {{booksService.readBooks().length}}
+            </span>
+            <span class="text-xl flex flex-col-reverse" title="Currently Reading">
+              <span class="text-sm">CR</span>
+              {{booksService.currentlyReadingBooks().length}}
+            </span>
+            <span class="text-xl flex flex-col-reverse" title="Plan To Read">
+              <span class="text-sm">PTR</span>
+              {{booksService.toReadBooks().length}}
+            </span>    
+          </div>
+        </div>
+        <div class="flex flex-col gap-1">
+          <div>
+            <p>The data you upload here is saved in your browser only.</p>
+          </div>
+        </div>
+        <div class="flex flex-col gap-1 mb-6">
+          <h3>Danger Zone:</h3>
+          <button class="btn btn-white block" (click)="clearModal.set(true)">
+            <fa-icon [icon]="faTrash" class="mr-2"></fa-icon>
+            clear data
+          </button>
+        </div>  
+        <div class="flex flex-col gap-1 mb-6">
+          <h2>Helpful links:</h2>
+          <div class="flex flex-col">
+            <a class="underline" target="_blank" href="https://www.goodreads.com/review/import">Export your Goodreads list</a>
+            <a class="underline" target="_blank" href="https://chat.deepseek.com/">Deepseek</a>         
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+}
 
 <app-modal [(open)]="clearModal" title="Clear Data" (confirmed)="clear()">
   <div>Do you really want to clear all data?</div>
-</app-modal>
-
-<app-modal [(open)]="importGenresModal" title="Import Genres" no-footer>
-  <div>
-    <input type="file" (change)="onGenresImport($event.target)">
-  </div>
 </app-modal>
