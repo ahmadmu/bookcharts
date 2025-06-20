@@ -16,7 +16,7 @@ type ImportPhase = 'initial' | 'isbns' | 'ids' | 'completed';
 })
 export class ImportComponent {
   options: AnimationOptions = {
-    path: '/assets/bookloading.json'
+    path: './assets/bookloading.json'
   };
 
   csvMetadata = {name: '', size: 0, type: ''}

@@ -9,21 +9,21 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url(/assets/font/OpenSans-Regular.ttf) format('truetype');
+    src: url('./assets/font/OpenSans-Regular.ttf') format('truetype');
   }
   @font-face {
     font-family: 'Open Sans';
     font-style: light;
     font-weight: 300;
     font-display: swap;
-    src: url(/assets/font/OpenSans-Light.ttf) format('truetype');
+    src: url('./assets/font/OpenSans-Light.ttf') format('truetype');
   }
   @font-face {
     font-family: 'Open Sans';
     font-style: light;
     font-weight: 600;
     font-display: swap;
-    src: url(/assets/font/OpenSans-Bold.ttf) format('truetype');
+    src: url('./assets/font/OpenSans-Bold.ttf') format('truetype');
   }
 }
 
