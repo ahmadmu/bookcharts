@@ -101,7 +101,7 @@ export class FavGenresChartComponent {
   copyPromptToClipboard(event: Event) {
     event.preventDefault();
     event.stopPropagation();
-    const prompt = 'create a new semicolon separated csv based on the attached csv, and fill the genres field with the genres of each book';
+    const prompt = 'create a new semicolon separated csv based on the attached csv, and fill the genres field with comma seperated genres of each book';
     navigator.clipboard.writeText(prompt).then(() => {
       this.copyStatus = 'Copied!';
     }).catch(err => {

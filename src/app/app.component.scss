@@ -5,3 +5,7 @@
         @apply border-primary text-primary;
     }
 }
+
+.router-wrapper {
+    width: calc(100% - 256px);
+}

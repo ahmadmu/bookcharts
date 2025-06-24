@@ -10,8 +10,9 @@ import { RatingYearChartComponent } from '../../components/rating-year-chart/rat
 import { RatingYearPublishedChartComponent } from '../../components/rating-year-published-chart/rating-year-published-chart.component';
 import { RatingPageCountChartComponent } from '../../components/rating-page-count-chart/rating-page-count-chart.component';
 import { FavGenresChartComponent } from '../../components/fav-genres-chart/fav-genres-chart.component';
+import { MonthlyReadsChartComponent } from "../../components/monthly-reads-chart/monthly-reads-chart.component";
 
-export type ChartType = 'favTags' | 'favSubjects' | 'favGenres' | 'favAuthor' | 'ratingVsPageCount' | 'ratingVsYear' | 'ratingVsYearPublished';
+export type ChartType = 'favTags' | 'favSubjects' | 'favGenres' | 'favAuthor' | 'ratingVsPageCount' | 'ratingVsYear' | 'ratingVsYearPublished' | 'monthlyCharts';
 
 @Component({
   selector: 'app-charts',
@@ -25,7 +26,8 @@ export type ChartType = 'favTags' | 'favSubjects' | 'favGenres' | 'favAuthor' | 
     FavGenresChartComponent,
     RatingYearChartComponent,
     RatingYearPublishedChartComponent,
-    RatingPageCountChartComponent
+    RatingPageCountChartComponent,
+    MonthlyReadsChartComponent
 ],
   templateUrl: './charts.component.html',
   styleUrl: './charts.component.scss'
@@ -51,6 +53,7 @@ export class ChartsComponent {
     { value: 'ratingVsPageCount', text: 'Rating vs Page Count'},
     { value: 'ratingVsYear', text: 'Rating over Time'},
     { value: 'ratingVsYearPublished', text: 'Rating vs Year Published'},
+    { value: 'monthlyCharts', text: 'Monthly Reads'}
   ]
 
   ngOnInit() {

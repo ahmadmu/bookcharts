@@ -1,10 +1,10 @@
-<div class="flex h-full">
+<div class="flex h-full overflow-hidden">
   <app-sidebar>
   </app-sidebar>
   
-  <div class="container m-auto py-4 h-full w-full">
-    <div class="flex flex-row m-auto px-5 w-full h-full">
-      <div class="w-full h-full">
+  <div class="container py-4 h-full router-wrapper m-auto">
+    <div class="flex flex-row px-5 h-full w-full">
+      <div class="w-full h-full px-4">
           @if (booksService.books().length > 0) {
             <router-outlet></router-outlet>
           } @else {

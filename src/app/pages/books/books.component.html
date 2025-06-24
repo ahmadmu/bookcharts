@@ -1,0 +1,40 @@
+<div class="h-full">
+  <h1 class="text-4xl font-light">Books</h1>
+  <div>
+    <p>
+      Here you can find all your books, and you can filter and edit them.
+    </p>
+  </div>
+    <div class="books overflow-auto">
+        <table class="w-full">
+            <thead class="bg-primary text-white sticky top-0 z-10">
+                <tr>
+                    @for (head of heads; track $index) {
+                        <th [ngStyle]="{minWidth: head.width}" class="px-4 py-1 text-left first:rounded-tl-md last:rounded-tr-md" 
+                            [attr.data-key]="head.key">
+                            {{ head.text }}
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for (book of books; track $index) {
+                    <tr >
+                        @for (head of heads; track $index) {
+                            @if (head.key === 'genres' || head.key === 'subjects') {
+                                <td class="px-4 py-1">
+                                    @for (item of book[head.key]; track item) {
+                                        <span class="inline-block mr-1">{{ item }}</span>
+                                    }
+                                </td>
+                            } @else {
+                                <td class="px-4 py-1">{{ book[head.key] }}</td>
+                            }
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
